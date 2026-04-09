@@ -42,3 +42,18 @@ li {
     color: red;
     font-size: 14px;
 }
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+li {
+    cursor: pointer;
+}
