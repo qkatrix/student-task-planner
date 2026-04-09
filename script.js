@@ -44,6 +44,7 @@ form.addEventListener("submit", function(e) {
         error.textContent = "Radās kļūda!";
     }
 });
+
 // загрузка задач при старте
 window.onload = function() {
     const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
