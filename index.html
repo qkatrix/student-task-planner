@@ -2,6 +2,7 @@
 <html lang="lv">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skolēnu dienas plānotājs</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,10 +12,51 @@
         <h1>📚 Dienas plānotājs</h1>
 
         <form id="taskForm">
-            <input type="text" id="taskInput" placeholder="Ievadi uzdevumu">
-            <button type="submit">Pievienot</button>
+            <div class="form-group">
+                <label for="taskInput">Uzdevums:</label>
+                <input type="text" id="taskInput" placeholder="Ievadi uzdevumu" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dateInput">Datums:</label>
+                <input type="date" id="dateInput">
+            </div>
+
+            <div class="form-group">
+                <label for="prioritySelect">Prioritāte:</label>
+                <select id="prioritySelect">
+                    <option value="low">🟢 Zema</option>
+                    <option value="medium" selected>🟡 Vidēja</option>
+                    <option value="high">🔴 Augsta</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="categorySelect">Kategorija:</label>
+                <select id="categorySelect">
+                    <option value="homework">📖 Mājasdarbis</option>
+                    <option value="study">📝 Mācības</option>
+                    <option value="sports">⚽ Sports</option>
+                    <option value="other" selected>📌 Cits</option>
+                </select>
+            </div>
+
+            <button type="submit">➕ Pievienot</button>
             <p id="error"></p>
         </form>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Visi</button>
+            <button class="filter-btn" data-filter="completed">✓ Izpildīti</button>
+            <button class="filter-btn" data-filter="pending">⏳ Neizpildīti</button>
+            <button class="filter-btn" data-filter="high">🔴 Augsta prioritāte</button>
+            <button id="clearBtn" class="clear-btn">🗑️ Dzēst visu</button>
+        </div>
+
+        <div class="stats">
+            <span>Kopā uzdevumu: <strong id="totalTasks">0</strong></span>
+            <span>Izpildīti: <strong id="completedTasks">0</strong></span>
+        </div>
 
         <ul id="taskList"></ul>
     </div>
