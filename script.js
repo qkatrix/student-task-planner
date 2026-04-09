@@ -14,6 +14,7 @@ function createTask(taskText) {
 
     deleteBtn.addEventListener("click", () => {
         li.remove();
+        saveTasks();
     });
 
     // отметить как выполнено
@@ -23,6 +24,8 @@ function createTask(taskText) {
 
     li.appendChild(deleteBtn);
     list.appendChild(li);
+
+    saveTasks();
 }
 
 form.addEventListener("submit", function(e) {
