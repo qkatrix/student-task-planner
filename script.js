@@ -41,3 +41,17 @@ form.addEventListener("submit", function(e) {
         error.textContent = "Radās kļūda!";
     }
 });
+// загрузка задач при старте
+window.onload = function() {
+    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    savedTasks.forEach(task => createTask(task));
+};
+
+// сохранение
+function saveTasks() {
+    const tasks = [];
+    document.querySelectorAll("li").forEach(li => {
+        tasks.push(li.firstChild.textContent);
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
