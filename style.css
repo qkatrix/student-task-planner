@@ -1,59 +1,314 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial;
-    background-color: #f2f2f2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    align-items: center;
+    padding: 20px;
 }
 
 .container {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
 }
 
 h1 {
     text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 2em;
 }
 
-input {
-    width: 70%;
-    padding: 8px;
+/* Forma */
+#taskForm {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-button {
-    padding: 8px;
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
     cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-li {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
 }
 
-.done {
-    text-decoration: line-through;
-    color: gray;
+button[type="submit"]:active {
+    transform: translateY(0);
 }
 
 #error {
-    color: red;
-    font-size: 14px;
+    color: #e74c3c;
+    font-size: 0.9em;
+    margin-top: 10px;
+    text-align: center;
+    min-height: 20px;
 }
 
-button {
-    background-color: #4CAF50;
+/* Filtri */
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 15px;
+    border: 2px solid #ddd;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.filter-btn:hover {
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: transparent;
+}
+
+.clear-btn {
+    padding: 8px 15px;
+    background: #e74c3c;
     color: white;
     border: none;
-    border-radius: 5px;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-li {
+    border-radius: 20px;
     cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-left: auto;
+}
+
+.clear-btn:hover {
+    background: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Statistika */
+.stats {
+    background: #f0f4ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    font-weight: 600;
+    color: #333;
+}
+
+.stats span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.stats strong {
+    color: #667eea;
+    font-size: 1.2em;
+}
+
+/* Saraksts ar uzdevumiem */
+#taskList {
+    list-style: none;
+}
+
+.task {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s;
+}
+
+.task:hover {
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.2);
+    transform: translateX(5px);
+}
+
+.task.done {
+    opacity: 0.7;
+    background: #e8f5e9;
+    border-left-color: #4caf50;
+}
+
+.task-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.task.done .text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.priority,
+.category {
+    font-size: 1.1em;
+}
+
+.text {
+    color: #333;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.date {
+    font-size: 0.85em;
+    color: #666;
+    background: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+.button-group {
+    display: flex;
+    gap: 5px;
+}
+
+.complete-btn,
+.delete-btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s;
+}
+
+.complete-btn {
+    background: #4caf50;
+    color: white;
+}
+
+.complete-btn:hover {
+    background: #45a049;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+.empty-message {
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+/* Atsaucības uz mobilo ierīci */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .filters {
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+
+    .clear-btn {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .task-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .button-group {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
